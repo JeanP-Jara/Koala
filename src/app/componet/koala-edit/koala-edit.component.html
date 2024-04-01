@@ -1,0 +1,51 @@
+<h2 mat-dialog-title>Edición {{entidad.company_name}}</h2>
+<br>
+<div class="body">
+  <form class="example-container" #newForm="ngForm" (ngSubmit)="guardarUser(newForm)">
+    <div mat-dialog-content class="contenedor">
+  
+      <mat-form-field>
+        <input matInput placeholder="Compañia" name="company_name" #company_name="ngModel" [(ngModel)]="entidad.company_name"
+          minlength="3" required/>
+        <mat-hint class="error" *ngIf="entidad.company_name.length<3">debe tener mínimo de 3 dígitos</mat-hint>
+      </mat-form-field>
+  
+      <mat-form-field>
+        <input matInput placeholder="RUC" name="ruc" #ruc="ngModel"  
+          [(ngModel)]="entidad.ruc" minlength="6" required/>
+        <mat-hint class="error" *ngIf="entidad.ruc.length<11">debe tener mínimo de 11 dígitos</mat-hint>
+      </mat-form-field>
+
+  
+      <mat-form-field>
+        <input matInput (keypress)="numberOnly($event)" placeholder="Número contacto" name="contact_number" #contact_number="ngModel" [(ngModel)]="entidad.contact_number" minlength="3"
+          required />
+        <mat-hint class="error" *ngIf="entidad.contact_number.length<7">debe tener mínimo de 7 dígitos</mat-hint>
+      </mat-form-field>
+  
+      <mat-form-field>
+        <input matInput placeholder="Web" name="web_page" #web_page="ngModel" [(ngModel)]="entidad.web_page"/>
+        <mat-hint class="error" *ngIf="entidad.web_page.length < 3">debe tener mínimo de 3 dígitos</mat-hint>
+      </mat-form-field>
+  
+      <mat-form-field>
+        <input matInput placeholder="Email" name="corporate_mail" #corporate_mail="ngModel" [(ngModel)]="entidad.corporate_mail"
+          minlength="3" required />
+        <mat-hint class="error" *ngIf="entidad.corporate_mail.length<3">debe tener mínimo de 3 dígitos</mat-hint>
+      </mat-form-field>  
+   
+    </div>
+    <div mat-dialog-actions>
+  
+      <button button mat-stroked-button color="primary" type="submit" cdkFocusInitial
+        [disabled]="!newForm.form.valid">
+        <mat-icon>save</mat-icon>
+        <span>Guardar</span>
+      </button>
+      <button button mat-stroked-button color="error" type="button" style="margin-left: 8px;" (click)="cerrar()">
+        <mat-icon>close</mat-icon>
+        <span style="margin-left: 4px;">Cancelar</span>
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,57 @@
+
+<div class="contenedorBody">
+    <h2> LISTADO DE COMPAÑIAS </h2>
+        <div class="contenedorfiltro">
+        </div>
+    <br />
+    <mat-card>
+        <table mat-table [dataSource]="tabla" matSort class="mat-elevation-z8" >
+            <ng-container matColumnDef="editar" >
+            <th mat-header-cell *matHeaderCellDef> 
+                <button mat-icon-button color="primary" (click)="openDialog(null)" matTooltip="insertar" >
+                    <mat-icon>add</mat-icon>
+                </button> 
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-icon-button matTooltip="editar" (click)="openDialog(element)" >
+                <mat-icon color="primary" aria-label="Example icon-button with a heart icon">edit</mat-icon>
+                </button>
+            </td>
+            </ng-container>
+            <ng-container matColumnDef="company_name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header > Nombre de Compañia </th>
+                <td mat-cell *matCellDef="let element"> {{element.company_name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="ruc">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> RUC </th>
+                <td mat-cell *matCellDef="let element"> {{element.ruc}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="contact_number">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Número de Contacto </th>
+                <td mat-cell *matCellDef="let element"> {{element.contact_number}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="web_page">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Página Web </th>
+                <td mat-cell *matCellDef="let element"> {{element.web_page}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="corporate_mail">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Email Corporativo </th>
+                <td mat-cell *matCellDef="let element"> {{element.corporate_mail}} </td>
+            </ng-container>
+            
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>            
+            <ng-template let-row matRowDef cdkVirtualFor [matRowDefColumns]="displayedColumns">
+                <tr mat-row></tr>
+            </ng-template>
+
+        </table>
+
+        <mat-paginator [pageSizeOptions]="pagin" showFirstLastButtons></mat-paginator>
+    </mat-card>
+</div>
+
+<ngx-spinner type="ball-spin-clockwise" [fullScreen] = "false" color = "#fff"><p style="color: white" > Cargando... </p></ngx-spinner>
